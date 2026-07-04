@@ -1,0 +1,99 @@
+package roomescape.domain;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
+@Entity
+@Table
+public class Reservation {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "member_id")
+    private Member member;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "theme_id")
+    private Theme theme;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "time_id")
+    private ReservationTime time;
+
+    @Column(nullable = false)
+    private LocalDate date;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private ReservationStatus status;
+
+    protected Reservation() {
+    }
+
+    public Reservation(Member member, Theme theme, ReservationTime time, LocalDate date) {
+        this(member, theme, time, date, ReservationStatus.CONFIRMED);
+    }
+
+    public Reservation(Member member, Theme theme, ReservationTime time, LocalDate date, ReservationStatus status) {
+        this.member = member;
+        this.theme = theme;
+        this.time = time;
+        this.date = date;
+        this.status = status;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public Member getMember() {
+        return member;
+    }
+
+    public Theme getTheme() {
+        return theme;
+    }
+
+    public ReservationTime getTime() {
+        return time;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public ReservationStatus getStatus() {
+        return status;
+    }
+
+    public boolean isPast(LocalDateTime now) {
+        return LocalDateTime.of(date, time.getStartAt()).isBefore(now);
+    }
+
+    public boolean isOwnedBy(Member targetMember) {
+        if (member == targetMember) {
+            return true;
+        }
+        return member.getId() != null && member.getId().equals(targetMember.getId());
+    }
+
+    public boolean hasSameSlot(Theme targetTheme, ReservationTime targetTime, LocalDate targetDate) {
+        return theme.getId().equals(targetTheme.getId())
+                && time.getId().equals(targetTime.getId())
+                && date.equals(targetDate);
+    }
+}

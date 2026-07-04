@@ -1,0 +1,4 @@
+interface:
+  display_name: "Spring Usecase Implementation"
+  short_description: "Spring 기능 구현 컨벤션 반복 적용 지원"
+  default_prompt: "Use $spring-usecase-implementation to implement this Spring use case with the project conventions."

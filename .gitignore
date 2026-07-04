@@ -1,0 +1,34 @@
+# macOS
+.DS_Store
+
+# Local scratch space
+tmp/
+_workspace/
+/exam.pdf
+/chapter-notes/
+/style-samples/
+__pycache__/
+
+# Local tool/app state
+.codex/
+.omx/
+.obsidian/
+
+# Nested local checkout, not part of this harness repository
+harness-engineering-with-cc/
+
+# Java / Gradle build outputs
+.gradle/
+build/
+out/
+target/
+bin/
+
+# IDE/editor
+.idea/
+*.iml
+
+# Logs and local env files
+*.log
+.env
+.env.*
