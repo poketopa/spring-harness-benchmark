@@ -5,7 +5,7 @@
 기록의 기본 흐름은 다음과 같습니다.
 
 ```text
-prompt -> generated result -> oracle/convention comparison -> run note -> CSV ledger -> validator
+prompt -> generated result -> oracle/convention comparison -> run note -> CSV ledger -> report
 ```
 
 ## 필수 파일
@@ -47,12 +47,9 @@ prompt -> generated result -> oracle/convention comparison -> run note -> CSV le
 4. `convention-comparisons.csv`를 갱신한다.
 5. run note를 작성한다.
 6. 필요할 때만 `skill-updates.csv`를 갱신한다.
-7. 저장소 루트에서 validator를 실행한다.
+7. CSV 원장, run note, 보고서가 서로 일치하는지 확인한다.
 
-   ```bash
-   python3 scripts/validate-benchmark-records.py
-   python3 scripts/generate-benchmark-metrics.py --check
-   ```
+정리 전 마지막 공식 검증 결과는 validator `0 warning(s)`, metrics up to date였다.
 
 ## 상태 값
 

@@ -60,8 +60,8 @@ If isolation, source hash, note template, and matrix update all work, continue:
 
 Before each run:
 
-1. Confirm `python3 scripts/validate-benchmark-records.py` passes.
-2. Confirm `python3 scripts/generate-benchmark-metrics.py --check` passes.
+1. Confirm the record set is validation-clean with the current validation path.
+2. Public repository cleanup removed the original validation scripts, so restore an equivalent validator before adding new rows.
 3. Confirm the matrix row is `planned`.
 4. Create the isolated target from the baseline only.
 5. Create a run note from `benchmarks/benchmark-records/templates/blind-run-note-template.md`.
@@ -141,9 +141,9 @@ After each run:
 2. Add a `runs.csv` row.
 3. Add `convention-comparisons.csv` rows.
 4. Update `benchmarks/benchmark-records/prompt-sufficiency-blind-matrix.csv`.
-5. Run `python3 scripts/generate-benchmark-metrics.py --write`.
-6. Run `python3 scripts/validate-benchmark-records.py`.
-7. Run `python3 scripts/generate-benchmark-metrics.py --check`.
+5. Regenerate metrics with the restored metrics generator.
+6. Run the restored record validator.
+7. Confirm generated metrics match the CSV records.
 
 ## Stop Conditions
 

@@ -31,17 +31,11 @@ Roomescape Spring 프로젝트를 대상으로 한 AI 코딩 skill 평가 자료
 - `reports/requirement-robustness-report.md`
 - `reports/spring-usecase-repeatability-report.md`
 
-## 기록 검증
+## 기록 상태
 
-저장소 루트에서 실행합니다.
+정리 전 마지막 검증 결과는 다음과 같습니다.
 
-```bash
-python3 scripts/validate-benchmark-records.py
-python3 scripts/generate-benchmark-metrics.py --check
-```
+- CSV 원장, 필수 필드, 보고서 참조, 실행 기록 계약: 통과
+- `reports/benchmark-metrics.md`와 현재 CSV 기록: 일치
 
-새 run이나 보고서가 추가되어 metrics가 stale이면 다음 명령으로 갱신합니다.
-
-```bash
-python3 scripts/generate-benchmark-metrics.py --write
-```
+현재 공개 저장소에는 검증 스크립트를 포함하지 않습니다.

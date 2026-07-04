@@ -21,12 +21,8 @@
 
 최종 검증 상태:
 
-```bash
-python3 scripts/validate-benchmark-records.py
-python3 scripts/generate-benchmark-metrics.py --check
-```
-
-두 명령 모두 clean이어야 한다. 마지막 확인 결과는 validator `0 warning(s)`, metrics up to date였다.
+- 정리 전 마지막 확인 결과는 validator `0 warning(s)`, metrics up to date였다.
+- 현재 공개 저장소에는 검증 스크립트를 포함하지 않는다.
 
 ## 반드시 보존할 계약
 
@@ -47,8 +43,6 @@ python3 scripts/generate-benchmark-metrics.py --check
 6. `benchmarks/reports/prompt-sufficiency-l3r-ablation-closeout.md`
 7. `benchmarks/reports/prompt-sufficiency-l3r-ablation-report.md`
 8. `benchmarks/reports/prompt-sufficiency-report.md`
-9. `scripts/validate-benchmark-records.py`
-10. `scripts/generate-benchmark-metrics.py`
 
 ## 다음으로 할 수 있는 일
 

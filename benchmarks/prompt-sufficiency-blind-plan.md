@@ -262,7 +262,7 @@ Run one feature gradient at a time. Within each feature, run repeat `002` across
 | 7 | `waiting-rank` | `002` | `roomescape-prompt-blind-waiting-rank-ko-l5-002`, `roomescape-prompt-blind-waiting-rank-ko-l3-002`, `roomescape-prompt-blind-waiting-rank-ko-l1-002` |
 | 8 | `waiting-rank` | `003` | `roomescape-prompt-blind-waiting-rank-ko-l5-003`, `roomescape-prompt-blind-waiting-rank-ko-l3-003`, `roomescape-prompt-blind-waiting-rank-ko-l1-003` |
 
-Run `python3 scripts/validate-benchmark-records.py` and `python3 scripts/generate-benchmark-metrics.py --check` before each feature block and after every recorded row. If metrics become stale because planned rows were appended or row statuses changed, run `python3 scripts/generate-benchmark-metrics.py --write`, then rerun both checks.
+Run the current record validator and metrics consistency check before each feature block and after every recorded row. If metrics become stale because planned rows were appended or row statuses changed, regenerate metrics, then rerun both checks. Repository cleanup removed the original local scripts from the public tree, so restore equivalent tooling before adding new rows.
 
 ### Isolation Rules For Expansion
 

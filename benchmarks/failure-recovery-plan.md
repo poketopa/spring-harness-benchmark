@@ -146,8 +146,8 @@ The first session should complete only this setup slice:
 3. Create the failure-cases README.
 4. Create the first ambiguous waiting approval hard-case requirement.
 5. Create `failure-recovery-matrix.csv` with six planned cases.
-6. Extend `scripts/validate-benchmark-records.py` to validate the new matrix headers, path existence, unique case IDs, and status values.
-7. Run `python3 scripts/validate-benchmark-records.py`.
+6. Extend the current record validator to validate the new matrix headers, path existence, unique case IDs, and status values.
+7. Run the current record validator.
 8. Stop if validator fails.
 
 Only after that setup is valid should a later step run the first baseline implementation.
@@ -168,16 +168,15 @@ Use this exact message to start the next Codex session:
 4. benchmarks/benchmark-records/summary.md
 5. benchmarks/reports/requirement-robustness-report.md
 6. benchmarks/failure-recovery-plan.md
-7. scripts/validate-benchmark-records.py
-8. .agents/skills/spring-usecase-implementation/SKILL.md
+7. .agents/skills/spring-usecase-implementation/SKILL.md
 
 이번 세션에서 할 일:
-1. 현재 상태에서 `python3 scripts/validate-benchmark-records.py`를 실행해 시작 상태를 확인한다.
+1. 현재 기록 검증 수단으로 시작 상태를 확인한다.
 2. `benchmarks/failure-cases/README.md`를 만든다.
 3. 첫 hard case인 `benchmarks/failure-cases/roomescape/c2-combined/ambiguous-waiting-approval.md`를 만든다.
 4. `benchmarks/benchmark-records/failure-recovery-matrix.csv`를 만들고, `benchmarks/failure-recovery-plan.md`의 6개 initial hard case를 planned 상태로 기록한다.
-5. `scripts/validate-benchmark-records.py`를 확장해서 failure-recovery matrix의 header, unique case_id, path existence, status value를 검증하게 한다.
-6. `python3 scripts/validate-benchmark-records.py`를 다시 실행한다.
+5. 현재 기록 검증 수단을 확장해서 failure-recovery matrix의 header, unique case_id, path existence, status value를 검증하게 한다.
+6. 기록 검증을 다시 실행한다.
 
 이번 세션에서는 아직 baseline implementation run을 수행하지 않는다. 목표는 failure-recovery benchmark setup이 validator로 검증되는 상태까지 만드는 것이다.
 

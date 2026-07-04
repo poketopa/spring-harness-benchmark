@@ -103,8 +103,8 @@ Do not start English expansion until the Korean repeat evidence is summarized, u
 
 Before any next implementation agent is started:
 
-1. `python3 scripts/validate-benchmark-records.py` passes.
-2. `python3 scripts/generate-benchmark-metrics.py --check` passes.
+1. The current record validator passes.
+2. Generated metrics match the CSV records.
 3. The three synthesis artifacts above are drafted.
 4. The next experiment's run IDs and matrix rows are defined.
 5. The implementation prompt excludes hidden oracle, prior target paths, run notes, and convention comparisons.

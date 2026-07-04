@@ -66,7 +66,7 @@ For every run:
 4. Write the run note.
 5. Update `runs.csv`.
 6. Update `convention-comparisons.csv`.
-7. Run `python3 scripts/validate-benchmark-records.py`.
+7. Run the current record validator.
 8. Update or create a robustness report under `benchmarks/reports/`.
 
 ## Stop Conditions
@@ -79,4 +79,3 @@ Stop and report before continuing if any of these occur:
 - missing or inconsistent benchmark records
 - skill/reference gap
 - validator failure
-

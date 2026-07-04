@@ -41,10 +41,12 @@ The first screening has 12 rows: four features times three ablation axes.
 
 ## Run Contract
 
+Repository cleanup note: the original run contract used local validation scripts that are no longer included in the public repository. Preserve the recorded results as historical evidence; restore equivalent validation tooling before adding new rows.
+
 Before implementation:
 
-1. `python3 scripts/validate-benchmark-records.py`
-2. `python3 scripts/generate-benchmark-metrics.py --check`
+1. Confirm the current record set is validation-clean with the available validation path.
+2. Confirm generated metrics match the CSV records.
 3. Confirm the ablation matrix row is `planned`.
 4. Create the isolated workspace from the row baseline only:
 
@@ -72,12 +74,7 @@ find src -type f | sort | xargs shasum -a 256 | shasum -a 256
 6. Add a run note under `benchmarks/benchmark-records/runs/{run_id}.md`.
 7. Add rows to `benchmarks/benchmark-records/runs.csv` and `benchmarks/benchmark-records/convention-comparisons.csv`.
 8. Update the ablation matrix row status, hash, source similarity, and notes path.
-9. Run:
-
-```bash
-python3 scripts/validate-benchmark-records.py
-python3 scripts/generate-benchmark-metrics.py --check
-```
+9. Run the restored record validator and metrics consistency check before marking the row complete.
 
 ## Screening Decision
 

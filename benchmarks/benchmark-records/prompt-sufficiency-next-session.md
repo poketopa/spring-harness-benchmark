@@ -29,17 +29,16 @@ Use this exact message to start the next Codex session:
 11. benchmarks/benchmark-records/prompt-sufficiency-blind-matrix.csv
 12. benchmarks/benchmark-records/runs.csv
 13. benchmarks/benchmark-records/convention-comparisons.csv
-14. scripts/validate-benchmark-records.py
-15. scripts/generate-benchmark-metrics.py
-16. benchmarks/benchmark-records/runs/roomescape-prompt-blind-cancel-waiting-ko-l3r-001.md
-17. benchmarks/benchmark-records/runs/roomescape-prompt-blind-manager-authz-ko-l3r-001.md
-18. benchmarks/benchmark-records/runs/roomescape-prompt-blind-concurrent-login-ko-l3r-001.md
-19. benchmarks/benchmark-records/runs/roomescape-prompt-blind-waiting-rank-ko-l3r-001.md
-20. benchmarks/benchmark-records/runs/roomescape-prompt-blind-manager-authz-ko-l3q-001.md
+14. benchmarks/benchmark-records/runs/roomescape-prompt-blind-cancel-waiting-ko-l3r-001.md
+15. benchmarks/benchmark-records/runs/roomescape-prompt-blind-manager-authz-ko-l3r-001.md
+16. benchmarks/benchmark-records/runs/roomescape-prompt-blind-concurrent-login-ko-l3r-001.md
+17. benchmarks/benchmark-records/runs/roomescape-prompt-blind-waiting-rank-ko-l3r-001.md
+18. benchmarks/benchmark-records/runs/roomescape-prompt-blind-manager-authz-ko-l3q-001.md
 
-시작 검증:
-1. python3 scripts/validate-benchmark-records.py
-2. python3 scripts/generate-benchmark-metrics.py --check
+시작 확인:
+1. README.md의 검증 상태를 확인한다.
+2. 공개 저장소에는 정리 과정에서 기록 검증 스크립트가 빠져 있다.
+3. 새 실험 기록을 추가하거나 지표를 갱신하려면 동등한 검증 수단을 먼저 복구/확정한다.
 
 핵심 해석:
 - L5 prompt는 Korean blind setting에서 반복 안정적으로 pass했다.
@@ -55,12 +54,12 @@ Use this exact message to start the next Codex session:
    - 보류: 같은 Korean L3R/L3Q 반복 추가. 이미 3-repeat 안정성이 충분해 정보 이득이 낮다.
 2. 선택한 실험에 대해 matrix/record design을 먼저 작성한다.
 3. run_id, case_path, baseline_path, target_path, isolation rule, stop condition, scoring rule을 문서화한다.
-4. 새 implementation rows를 시작하기 전 validator와 metrics --check가 통과해야 한다.
+4. 새 implementation rows를 시작하기 전 기록 계약과 검증 수단을 먼저 확정한다.
 5. 구현 run을 시작한다면 implementation agent는 hidden oracle, previous solution source, run note, convention comparison을 보지 않아야 한다.
 
 금지:
 - 84-run oracle-assisted baseline과 prompt-only blind/intervention 결과를 합쳐 성공률로 주장하지 않는다.
 - 원본 L3와 L3R을 같은 prompt level로 합치지 않는다.
 - 새 실험 matrix가 정의되기 전 implementation agent를 만들지 않는다.
-- skill/reference/evaluator/oracle을 바꾸지 않는다. 새 실험을 위해 record validator가 새 blind-only 조건명을 알아야 하는 경우만 최소 변경하고 반드시 문서화한다.
+- skill/reference/evaluator/oracle을 바꾸지 않는다. 새 실험을 위해 기록 검증 수단을 복구하거나 바꿔야 하는 경우만 최소 변경하고 반드시 문서화한다.
 ```

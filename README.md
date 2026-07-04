@@ -5,6 +5,7 @@
 Spring/Java 요구사항 구현을 대상으로, 코딩 에이전트(Codex)의 구현 안정성을 측정.
 
 ### 핵심 결론
+
 ```
 약한 프롬프트도 숨김 정답 기준이나 기존 맥락을 암묵적으로 받으면 좋아 보일 수 있다.
 그러나 프롬프트 단독 블라인드 조건에서는 요구사항 증거가 쉽게 빠진다.
@@ -182,39 +183,76 @@ L3R 후속 실험:
 - 스킬, 참고 자료, 평가기, 정답 기준은 실험 중 임의로 바꾸지 않는다.
 - 결과 판정은 실행 기록, CSV 기록, 보고서가 서로 맞아야 한다.
 
-## 검증
+## 검증 상태
 
-저장소 루트에서 실행.
+정리 전 마지막 검증 결과는 다음과 같다.
 
-```bash
-python3 scripts/validate-benchmark-records.py
-python3 scripts/generate-benchmark-metrics.py --check
-```
+- CSV 원장, 필수 필드, 보고서 참조, 실행 기록 계약: 통과
+- `benchmarks/reports/benchmark-metrics.md`와 현재 CSV 기록: 일치
 
-검증 의미:
-
-- `validate-benchmark-records.py` 통과: CSV 원장, 필수 필드, 보고서 참조, 실행 기록 계약이 맞는 상태.
-- `generate-benchmark-metrics.py --check` 통과: `benchmarks/reports/benchmark-metrics.md`가 현재 CSV 기록과 일치하는 상태.
-
-지표 보고서를 갱신할 때만 다음 명령 사용.
-
-```bash
-python3 scripts/generate-benchmark-metrics.py --write
-```
+현재 공개 저장소에는 검증 스크립트를 포함하지 않는다.
+새 실험을 이어가려면 같은 기록 계약을 보존하는 검증기를 별도 복구한 뒤 CSV와 보고서를 함께 갱신한다.
 
 ## 저장소 구조
 
-- `benchmarks/benchmark-records/`: CSV 원장, 실행 기록, 템플릿, 연구 요약
-- `benchmarks/reports/`: 사람이 읽는 종합 보고서
-- `benchmarks/failure-cases/`: 실패 복구용 난제 프롬프트
-- `benchmarks/failure-runs/`: 실패 복구 기준선/재실행 대상
+```text
+.
+├── README.md
+├── .agents/
+│   └── skills/
+│       └── spring-usecase-implementation/
+│           ├── SKILL.md
+│           └── references/
+│               ├── architecture-principles.md
+│               ├── controller-service-repository.md
+│               ├── diagnostics-checklist.md
+│               ├── domain-modeling.md
+│               ├── java-class-ordering.md
+│               ├── review-rubric.md
+│               └── testing-style.md
+├── benchmarks/
+│   ├── README.md
+│   ├── benchmark-records/
+│   │   ├── README.md
+│   │   ├── runs.csv
+│   │   ├── convention-comparisons.csv
+│   │   ├── *-matrix.csv
+│   │   ├── runs/
+│   │   └── templates/
+│   ├── reports/
+│   │   ├── benchmark-metrics.md
+│   │   ├── failure-recovery-report.md
+│   │   ├── prompt-sufficiency-report.md
+│   │   ├── prompt-sufficiency-l3r-ablation-report.md
+│   │   ├── prompt-sufficiency-l3r-ablation-closeout.md
+│   │   ├── requirement-robustness-report.md
+│   │   └── spring-usecase-repeatability-report.md
+│   ├── failure-cases/
+│   ├── failure-runs/
+│   ├── requirement-variants/
+│   ├── robustness-runs/
+│   ├── repeat-runs/
+│   ├── prompt-sufficiency-cases/
+│   ├── prompt-sufficiency-runs/
+│   ├── prompt-sufficiency-blind-runs/
+│   ├── prompt-sufficiency-l3r-ablation-runs/
+│   ├── prompt-sufficiency-l3r-ablation-confirmatory-runs/
+│   ├── prompt-sufficiency-l3r-ablation-robust-confirmatory-runs/
+│   ├── prompt-sufficiency-l3r-ablation-race-tiebreaker-runs/
+│   └── roomescape-*/
+└── missions/
+    └── roomescape-reservation-waiting/
+        └── requirements/
+            ├── base/
+            └── add-ons/
+                ├── auth-authorization/
+                └── jpa/
+```
+
+- `.agents/skills/spring-usecase-implementation/`: 평가 대상 Codex 스킬과 참고 자료
+- `benchmarks/benchmark-records/`: CSV 원장, 실행 기록, 실험 행렬, 기록 템플릿
+- `benchmarks/reports/`: 사람이 읽는 최종 보고서와 지표 보고서
+- `benchmarks/*-runs/`: 각 실험에서 생성된 Spring 대상 프로젝트
 - `benchmarks/prompt-sufficiency-cases/`: 프롬프트 수준별 사례와 숨김 정답 기준
-- `benchmarks/prompt-sufficiency-runs/`: 정답 기준 보조 프롬프트 충분성 대상
-- `benchmarks/prompt-sufficiency-blind-runs/`: 프롬프트 단독 블라인드 기준선 대상
-- `benchmarks/prompt-sufficiency-l3r-ablation-*`: L3R 제거 실험 대상
-- `benchmarks/requirement-variants/`: 다른 표현의 요구사항과 의미 점검표
-- `benchmarks/robustness-runs/`: 요구사항 견고성 대상
-- `benchmarks/roomescape-*`: 기준선, 재생성, 안정 대상 프로젝트
+- `benchmarks/requirement-variants/`: 요구사항 변형과 의미 점검표
 - `missions/`: 원 요구사항 문서
-- `.agents/skills/`: 평가 대상 로컬 Codex 스킬
-- `scripts/`: 기록 검증 및 지표 생성 스크립트
